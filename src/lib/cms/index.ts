@@ -1,3 +1,5 @@
+import { Page } from '../sitemap';
+
 interface Post {
   userId: number,
   id: number,
@@ -5,7 +7,7 @@ interface Post {
   body: string,
 }
 
-export const getAllPosts = (): Promise<Post> => {
+export const getAllPosts = async (): Promise<Post[]> => {
   try {
     return fetch('https://jsonplaceholder.typicode.com/todos/1')
       .then(response => response.json())
@@ -14,3 +16,9 @@ export const getAllPosts = (): Promise<Post> => {
   }
 }
 
+export const getAllPostPaths = async (): Promise<Page[]> => {
+  const blogPosts = await getAllPosts();
+  return blogPosts.map((post) => ({
+    slug: `/post/${post.id}`,
+  }))
+}
