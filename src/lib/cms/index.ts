@@ -9,7 +9,7 @@ interface Post {
 
 export const getAllPosts = async (): Promise<Post[]> => {
   try {
-    return fetch('https://jsonplaceholder.typicode.com/todos/1')
+    return fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
   } catch (e) {
     throw e;
